@@ -1,17 +1,16 @@
 import { Provider } from 'react-redux';
 import store  from './redux/store';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/header';
-import LoginPage from './components/login';
+import { BrowserRouter as Router, Routes, Route, RouterProvider } from 'react-router-dom';
+import { router } from './Router';
 
 
 function App() {
   return (
     <Provider store={store}>
+      <RouterProvider router={router}></RouterProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Header />} />
-          <Route path="/login" element={<LoginPage />} />
+         
         </Routes>
       </Router>
     </Provider>

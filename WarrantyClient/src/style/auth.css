@@ -1,0 +1,141 @@
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    /* height: 100vh; */
+    /* background-color: #0d1117; */
+  }
+
+  .auth-box {
+    background-color: #161b22;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 255, 127, 0.2);
+    width: 350px;
+    text-align: center;
+
+  }
+  
+  h2 {
+    color: #f0f6fc;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #30363d;
+    border-radius: 5px;
+    background-color: #0d1117;
+    color: #f0f6fc;
+  }
+  
+  /* כפתור רישום */
+  .primary-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #238636;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .primary-btn:hover {
+    background-color: #2ea043;
+  }
+  
+  /* כפתור גוגל */
+  .google-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .google-btn:hover {
+    background-color: #e1e4e8;
+  }
+  
+  /* כפתור ביטול */
+  .cancel-btn {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #c9d1d9;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #c9d1d9;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #30363d;
+  }
+  
+  /* שגיאה */
+  .error {
+    color: #ff7b72;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+    padding-left: 5px;
+  }
+  
+  /* קישור לרישום */
+  .register-link {
+    margin-top: 15px;
+    color: #c9d1d9;
+  }
+  
+  .register-link a {
+    color: #58a6ff;
+    text-decoration: none;
+  }
+  
+  .register-link a:hover {
+    text-decoration: underline;
+  }
+  
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .password-container input {
+    width: 100%;
+    padding-right: 35px; /* מרווח לאייקון */
+  }
+  
+  .eye-icon {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .eye-icon svg {
+    font-size: 20px; /* הקטנת האייקון */
+    color: #666; /* צבע אפור עדין */
+  }
+  
+  /* הוספת עיצוב לשדות עם שגיאה */
+  .input-error {
+    border-color: #ff7b72;
+  }
+  

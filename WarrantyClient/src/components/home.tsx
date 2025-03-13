@@ -1,41 +1,22 @@
-// import { Button, Container, Typography } from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { StoreType } from '../redux/store';
 
-// function Home() {
-//   const navigate = useNavigate();
-//   const { list: usersList, loading, error } = useSelector((store: StoreType) => store.users);
+import { AppBar, Toolbar } from "@mui/material";
+import { Outlet } from "react-router-dom";
+import Header from "./header";
 
-//   const dispatch = useDispatch();
+const Layout = () => {
+  return (
+    <div>
+      <AppBar position="fixed" color="default" elevation={2}>
+        <Toolbar>
+          <Header />
+        </Toolbar>
+      </AppBar>
+      <div style={{ height: "64px" }} /> {/* רווח מתחת להדר */}
+      <main>
+        <Outlet />
+      </main>
+    </div>
+  );
+};
 
-//   return (
-//     <Container maxWidth="sm" sx={{ textAlign: 'center', mt: 5 }}>
-//       <Typography variant="h4" gutterBottom>Welcome to Warranty Keeper</Typography>
-//       {user ? (
-//         <>
-//           <Typography variant="h6">Hello, {user.}!</Typography>
-//           <Button 
-//             variant="contained" 
-//             color="secondary" 
-//             onClick={() => dispatch(logout())} 
-//             sx={{ mt: 2 }}
-//           >
-//             Logout
-//           </Button>
-//         </>
-//       ) : (
-//         <Button 
-//           variant="contained" 
-//           color="primary" 
-//           onClick={() => navigate('/auth')} 
-//           sx={{ mt: 2 }}
-//         >
-//           Login / Sign Up
-//         </Button>
-//       )}
-//     </Container>
-//   );
-// }
-
-// export default Home;
+export default Layout;

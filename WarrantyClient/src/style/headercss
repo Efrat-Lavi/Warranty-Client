@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #2d333b; /* אפור כהה */
+    color: white;
+    padding: 10px 20px;
+    height: 60px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+  }
+  
+  .profile-icon {
+    color: white;
+  }
+  
+  .login-btn {
+    background-color: #238636; /* ירוק */
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .login-btn:hover {
+    background-color: #2ea043; /* ירוק כהה יותר */
+  }
+  
