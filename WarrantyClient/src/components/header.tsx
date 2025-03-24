@@ -1,65 +1,4 @@
 
-// import { useDispatch, useSelector } from "react-redux";
-// import { logout } from "../redux/authSlice";
-// import { StoreType } from "../redux/store";
-// import { AccountCircle, Settings, ExitToApp } from "@mui/icons-material";
-// import { Menu, MenuItem, IconButton, AppBar, Toolbar, Button, Avatar, Box } from "@mui/material";
-// import { useState } from "react";
-
-// const Header = () => {
-//   const dispatch = useDispatch();
-//   const { user, token } = useSelector((state: StoreType) => state.auth);
-//   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-//   const open = Boolean(anchorEl);
-
-//   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-//     setAnchorEl(event.currentTarget);
-//   };
-
-//   const handleMenuClose = () => {
-//     setAnchorEl(null);
-//   };
-
-//   const handleLogout = () => {
-//     dispatch(logout());
-//     handleMenuClose();
-//   };
-
-//   return (
-//     <AppBar position="static" sx={{ backgroundColor: "#1c1c1c", padding: "0.5rem",width: "100%" }}>
-//       <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
-//         {token ? (
-//           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-//             <IconButton onClick={handleMenuOpen} sx={{ color: "white" }}>
-//               <Avatar sx={{ bgcolor: "#238636" }}>
-//                 {user?.nameUser?.charAt(0).toUpperCase() || "U"}
-//               </Avatar>
-//             </IconButton>
-//             <Menu
-//               anchorEl={anchorEl}
-//               open={open}
-//               onClose={handleMenuClose}
-//               MenuListProps={{ "aria-labelledby": "profile-button" }}
-//             >
-//               <MenuItem onClick={handleMenuClose}>
-//                 <Settings sx={{ mr: 1 }} /> Settings
-//               </MenuItem>
-//               <MenuItem onClick={handleLogout}>
-//                 <ExitToApp sx={{ mr: 1 }} /> Logout
-//               </MenuItem>
-//             </Menu>
-//           </Box>
-//         ) : (
-//           <Button href="/login" variant="contained" sx={{ backgroundColor: "#238636", "&:hover": { backgroundColor: "#2ea043" } }}>
-//             Login
-//           </Button>
-//         )}
-//       </Toolbar>
-//     </AppBar>
-//   );
-// };
-
-// export default Header;
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/authSlice";
 import { StoreType } from "../redux/store";
@@ -77,12 +16,14 @@ import {
   Paper,
 } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const dispatch = useDispatch();
   const { user, token } = useSelector((state: StoreType) => state.auth);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const navigate = useNavigate();
 
   const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -95,11 +36,43 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     handleMenuClose();
+    navigate("/");
   };
 
+  const handleNavigate = (path: string) => {
+    if (token) {
+      navigate(path);
+    } else {
+      navigate("/login");
+    }
+  };
+  const styleButton = {
+    color: "white",
+    textTransform: "none",
+    "&:hover": { backgroundColor: "#2ea043" },
+    "&:focus": {
+      outline: "none",
+      boxShadow: "none"
+    }
+  }
   return (
-    <AppBar position="static" sx={{ backgroundColor: "#1c1c1c", padding: "0.5rem", width: "100%" }}>
-      <Toolbar sx={{ display: "flex", justifyContent: "flex-end" }}>
+    <AppBar position="static" sx={{ backgroundColor: "#1c1c1c", padding: "0.5rem", width: "100%" }} >
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <Box sx={{ display: "flex", gap: 2 }}>
+          <Button
+            sx={styleButton}
+            onClick={() => handleNavigate("/record")}
+          >
+            My Warranties
+          </Button>
+          <Button
+            onClick={() => handleNavigate("/about")}
+            sx={styleButton}
+          >
+            About
+          </Button>
+        </Box>
+
         {token ? (
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <IconButton onClick={handleMenuOpen} sx={{ color: "white" }}>
@@ -138,16 +111,16 @@ const Header = () => {
             </Menu>
           </Box>
         ) : (
-            <Button
+          <Button
             href="/login"
             variant="contained"
             sx={{
               backgroundColor: "#238636",
-              "&:hover": { backgroundColor: "#2ea043",color:"black" },
-              textTransform: 'none',  // מניעת שינוי לאותיות גדולות
+              "&:hover": { backgroundColor: "#2ea043", color: "black" },
+              textTransform: 'none',
               "&:focus": {
-                outline: "none",  // הסרת קו המיקוד הכחול
-                boxShadow: "none", // הסרת הצל של המיקוד
+                outline: "none",
+                boxShadow: "none",
               },
             }}
           >
@@ -155,7 +128,7 @@ const Header = () => {
           </Button>
         )}
       </Toolbar>
-    </AppBar>
+    </AppBar >
   );
 };
 

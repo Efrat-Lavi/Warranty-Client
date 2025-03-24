@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser, loginUser } from "../redux/authSlice";
-import { AppDispatch, StoreType } from "../redux/store";
+import { AddDispatch, StoreType } from "../redux/store";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -18,7 +18,7 @@ const schema = yup.object().shape({
 });
 
 const RegisterPage = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AddDispatch = useDispatch();
   const navigate = useNavigate();
   const { loading } = useSelector((state: StoreType) => state.auth);
   const [showPassword, setShowPassword] = useState(false);

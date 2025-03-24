@@ -12,6 +12,24 @@ export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+
+
+// export const getUserByEmail = createAsyncThunk("users/fetchByEmail",
+//   async ({token,email}:{token:string,email: string}, thunkAPI) => {
+//     try {
+//       const response = await axios.get("https://localhost:7200/api/User/GetByEmail", {
+//         params: { email },
+//         headers: { Authorization: `Bearer ${token}` },
+//       });
+      
+//       return response.data;
+//     } catch (error: any) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
+
 export const addUser = createAsyncThunk("users/add",
   async ( user: Partial<User>, thunkAPI) => {
     try {
@@ -23,6 +41,7 @@ export const addUser = createAsyncThunk("users/add",
     }
   }
 );
+
 export const updateUser = createAsyncThunk("users/update",
   async ({ user, userId }: { user: Partial<User>, userId: string }, thunkAPI) => {
     try {

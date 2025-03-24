@@ -2,7 +2,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import initialState from "../models/authUser";
-import { User } from "../models/user";
 
 // קריאה ל-LOGIN
 export const loginUser = createAsyncThunk(
@@ -11,6 +10,7 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post("https://localhost:7200/api/Auth/login", { email, password });
       localStorage.setItem("token", response.data.token); // שמירת טוקן בלוקאלי
+      localStorage.setItem("user", JSON.stringify(response.data.user));
       return response.data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response?.data || "Login failed");
@@ -44,8 +44,11 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        state.user = null;
+        state.token = null;
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
