@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 const SharedWith = ({ recordId }: { recordId: number }) => {
     const dispatch: AddDispatch = useDispatch()
     const { token ,user} = useSelector((store: StoreType) => store.auth)
-    const { records, loading, error } = useSelector((state: StoreType) => state.records)
+    const { records } = useSelector((state: StoreType) => state.records)
     const [record, setRecord] = useState<Record>()
     const [foundRecord, setFoundRecord] = useState<Record | null>(null);
 

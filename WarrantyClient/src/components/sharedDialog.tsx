@@ -12,7 +12,7 @@ import { Share2 } from "lucide-react"
 import { AddDispatch, StoreType } from "../redux/store"
 import { useDispatch, useSelector } from "react-redux"
 import { addRecord, getRecords } from "../redux/recordSlice"
-import { User } from "../models/user"
+// import { User } from "../models/user"
 import { getUserByEmail } from "../services/userService"
 import { Record } from "../models/record"
 import { useParams } from "react-router-dom"
@@ -30,7 +30,7 @@ const SharedDialog = ({ record, showButton }: { record: Record, showButton: bool
     const [shareDialogOpen, setShareDialogOpen] = useState(!showButton)
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string>("");
-    const [userToShare, setUserToShare] = useState<User | null>();
+    // const [userToShare, setUserToShare] = useState<User | null>();
 
     const handleShareDialogClose = () => {
         setShareDialogOpen(false)
@@ -57,7 +57,7 @@ const SharedDialog = ({ record, showButton }: { record: Record, showButton: bool
         setIsLoading(true)
         if (token && email && id) {
             const isExist = await getUserByEmail({ token, email: shareEmail })
-            setUserToShare(isExist);
+            // setUserToShare(isExist);
             console.log(isExist);
 
             if (!isExist)

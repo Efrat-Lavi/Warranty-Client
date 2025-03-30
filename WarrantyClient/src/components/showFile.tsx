@@ -1,65 +1,3 @@
-// import { Download } from "@mui/icons-material";
-// import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
-// import axios from "axios";
-// import { useEffect, useState } from "react";
-// import { downloadFile } from "../services/fileServices";
-// // import FileDownload from "../FileDownload";
-
-// const ShoeFile = ({ fileName, userId }: { fileName: string, userId: string }) => {
-
-//     const [imageUrl, setImageUrl] = useState<string | null>(null);
-//     const [download, setDownload] = useState<boolean>(false);
-
-//     useEffect(() => {
-//         console.log("inshoeTemplte useEffect 1", imageUrl);
-
-//         const fetchFileUrl = async () => {
-//             try {
-//                 console.log("fileName");
-//                 console.log(fileName);
-
-//                 //לקבלת ה-Presigned URL
-//                 const res = await downloadFile({ fileName, userId })
-//                 console.log("inshoeTemplte useEffect 2");
-//                 console.log(res);
-
-//                 setImageUrl(res); // הגדרת ה-URL לקבלת התמונה
-//                 console.log(imageUrl);
-
-//             } catch (error) {
-//                 console.error('שגיאה בהבאת ה-URL:', error);
-//                 alert(`שגיאה בהבאת ה-URL: ${error}`);
-//             }
-//         };
-
-//         fetchFileUrl();
-//     }, [fileName]); // מבצע את הקריאה כל פעם ששם הקובץ משתנה
-
-
-//     return (
-//         <div>
-
-//             <Card sx={{ width: 350, boxShadow: 4, borderRadius: 3, overflow: 'hidden', position: 'relative' }}>
-//                 {imageUrl ? (
-//                     <>
-//                         <CardMedia
-//                             component="img"
-//                             height="200"
-//                             image={imageUrl}
-//                             alt={fileName}
-//                             sx={{ objectFit: 'contain', paddingTop: '25px' }}
-//                         />
-//                     </>
-//                 ) : (
-//                     <Typography variant="body1" align="center" sx={{ padding: 2 }}>טוען תבנית...</Typography>
-//                 )}
-//             </Card>
-
-
-//         </div>
-//     );
-// };
-// export default ShoeFile
 import { Box, CardMedia, Typography, Button, Dialog, IconButton, DialogContent, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import { DownloadIcon } from "lucide-react";
@@ -94,8 +32,7 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
         fetchFileUrl();
     }, [fileName]);
 
-    // const { id } = useParams<{ id: string }>()
-    // const [warranty, setWarranty] = useState(mockWarranty)
+
     const [fileDialogOpen, setFileDialogOpen] = useState(false)
 
 
@@ -106,28 +43,6 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
     const handleFileDialogClose = () => {
         setFileDialogOpen(false)
     }
-    // const handleDownload = async (e: React.MouseEvent) => {
-    //     e.stopPropagation(); // מונע פתיחת הדיאלוג אם נלחץ בתוך הכרטיסייה
-    
-    //     try {
-    //         const response = await fetch(fileUrl);
-    //         const blob = await response.blob();
-    //         const url = window.URL.createObjectURL(blob);
-    //         const a = document.createElement("a");
-    
-    //         a.href = url;
-    //         a.download = fileName; // השם של הקובץ שיורד
-    //         document.body.appendChild(a);
-    //         a.click();
-    
-    //         window.URL.revokeObjectURL(url);
-    //         document.body.removeChild(a);
-    //     } catch (error) {
-    //         console.error("שגיאה בהורדת הקובץ:", error);
-
-    //     }
-    // };
-    
     return (<>
         <Paper
             onClick={handleFileDialogOpen}
@@ -171,7 +86,7 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
             </Box>
             <Button
                 startIcon={<DownloadIcon />}
-                onClick={(e) => {downloadFileToComputer(fileUrl||'',warranty.linkFile) }}
+                onClick={() => {downloadFileToComputer(fileUrl||'',warranty.linkFile) }}
                 sx={{
                     textTransform: "none",
                     fontWeight: 500,
@@ -188,7 +103,7 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
                 <Box>
                     <Button
                         startIcon={<DownloadIcon />}
-                        onClick={(e) => {downloadFileToComputer(fileUrl||'',warranty.linkFile) }}
+                        onClick={() => {downloadFileToComputer(fileUrl||'',warranty.linkFile) }}
                         sx={{
                             mr: 1,
                             textTransform: "none",

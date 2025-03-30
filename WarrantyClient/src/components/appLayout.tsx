@@ -56,7 +56,7 @@ const AppLayout: React.FC = () => {
                 <List sx={{ mt: 2 }}>
                     {menuItems.map((item) => (
                         <ListItem
-                            button
+                            // button
                             key={item.text}
                             component={Link}
                             to={item.path}
@@ -69,7 +69,7 @@ const AppLayout: React.FC = () => {
                                 backgroundColor:
                                     location.pathname === item.path ? theme.palette.primary.main : "transparent",
                                 "&:hover": {
-                                    backgroundColor:  location.pathname === item.path ? theme.palette.grey: theme.palette.grey,
+                                    // backgroundColor:  location.pathname === item.path ? theme.palette.grey: theme.palette.grey,
                                     // backgroundColor: theme.palette.grey,
                                 },
                             }}

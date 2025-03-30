@@ -1,29 +1,3 @@
-
-// import { useDispatch, useSelector } from "react-redux";
-// import { StoreType } from "../../redux/store";
-// import recordSlice  from "../../redux/recordSlice";
-
-// const CategoryFilter = () => {
-//     const dispatch = useDispatch();
-//     const selectedCategory = useSelector((state: StoreType) => state.records.selectedCategory);
-//     const categories = ["Electronics", "Home Appliances", "Furniture", "Other"];
-
-//     return (
-//         <select
-//             value={selectedCategory}
-//             onChange={(e) => dispatch(recordSlice.actions.setSelectedCategory(e.target.value))}
-//             className="p-2 border rounded bg-gray-800 text-white"
-//         >
-//             <option value="">All Categories</option>
-//             {categories.map((category) => (
-//                 <option key={category} value={category}>{category}</option>
-//             ))}
-//         </select>
-//     );
-// };
-// export default CategoryFilter;
-
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { StoreType } from '../../redux/store';

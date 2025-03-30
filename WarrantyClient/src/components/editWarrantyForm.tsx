@@ -203,7 +203,6 @@ import {
     IconButton,
 } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
-import { Warranty } from "../models/warranties";
 
 interface EditWarrantyDialogProps {
     open: boolean;

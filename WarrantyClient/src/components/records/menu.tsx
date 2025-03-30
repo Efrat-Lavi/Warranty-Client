@@ -257,7 +257,6 @@ import { deleteWarranty, updateWarranty } from "../../redux/warrantySlice";
 import { useSelector } from "react-redux";
 import { StoreType } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
-import { Warranty } from "../../models/warranties";
 
 const MenuWarranty = ({ record }: { record: Record }) => {
     const [menuAnchorEl, setMenuAnchorEl] = useState<null | HTMLElement>(null);
