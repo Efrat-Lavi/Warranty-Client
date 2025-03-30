@@ -2,13 +2,14 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { initialState, Record } from '../models/record';
+import { baseUrl } from '../App';
 
 //שליפת כל התעודות אחריות עם גישה לתפקיד ולתעודה
 export const getRecords = createAsyncThunk("records/fetch", async ({token,userId}:{token:string,userId: number}, thunkAPI) => {
     // const token = localStorage.getItem("token"); // נטען את ה-Token מה-LocalStorage
     if (!token) return thunkAPI.rejectWithValue("No token available");
     try {
-        const response = await axios.get(`https://localhost:7200/api/Record/user/${userId}`,{
+        const response = await axios.get(`${baseUrl}/api/Record/user/${userId}`,{
                 headers:{Authorization: `Bearer ${token}`}
             });
 
@@ -22,7 +23,7 @@ export const getRecordById = createAsyncThunk(
     "records/fetchById",
     async ({ token, recordId }: { token: string; recordId: number }, thunkAPI) => {
         try {
-            const response = await axios.get(`https://localhost:7200/api/Record/${recordId}`, {
+            const response = await axios.get(`${baseUrl}/api/Record/${recordId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data;
@@ -39,10 +40,11 @@ export const addRecord = createAsyncThunk("records/add",
             const recordToSend = {
                 UserId: record.userId, 
                 WarrantyId: record.warrantyId,  
-                RoleWarranty: record.roleWarranty 
+                RoleWarranty: record.roleWarranty ,
+                EmailOwner:record.emailOwner
             };
 
-            const response = await axios.post("https://localhost:7200/api/Record", recordToSend, {
+            const response = await axios.post(`${baseUrl}/api/Record`, recordToSend, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -57,7 +59,7 @@ export const addRecord = createAsyncThunk("records/add",
 export const updateRecord = createAsyncThunk("records/update",
     async ({ record, recordId }: { record: Partial<Record>, recordId: number }, thunkAPI) => {
         try {
-            const response = await axios.put(`https://localhost:7200/api/Warranty/${recordId}`, record);
+            const response = await axios.put(`${baseUrl}/api/Warranty/${recordId}`, record);
             return response.data;
         } catch (error: any) {
             return thunkAPI.rejectWithValue(error.message);
@@ -68,7 +70,7 @@ export const deleteRecord = createAsyncThunk(
     "records/delete",
     async ({ token, recordId }: { token: string; recordId: number }, thunkAPI) => {
         try {
-            const response = await axios.delete(`https://localhost:7200/api/Record/${recordId}`, {
+            const response = await axios.delete(`${baseUrl}/api/Record/${recordId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             return response.data ? recordId : thunkAPI.rejectWithValue("Deletion failed");

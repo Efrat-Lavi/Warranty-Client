@@ -2,14 +2,14 @@ import { combineSlices, configureStore } from "@reduxjs/toolkit";
 import userSlice from "./userSlice";
 import authSlice from "./authSlice";
 import recordSlice from "./recordSlice";
-import warrantySlice from "./warrantySlice";
+// import warrantySlice from "./warrantySlice";
 
 const store = configureStore({
     reducer: combineSlices(
        userSlice,
        authSlice, 
        recordSlice,
-       warrantySlice
+    //    warrantySlice
     ),
 });
 

@@ -1,18 +1,20 @@
 import { Provider } from 'react-redux';
 import store  from './redux/store';
-import { BrowserRouter as Router, Routes, Route, RouterProvider } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, RouterProvider } from 'react-router-dom';
 import { router } from './Router';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
+// export const baseUrl = "https://localhost:7200"
+export const baseUrl = "https://warranty-server-g7vn.onrender.com"
+//
 function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#10a37f", // OpenAI green
+        main: "#10a37f", 
       },
       secondary: {
-        main: "#6e6e80", // OpenAI gray
+        main: "#6e6e80", 
       },
       background: {
         default: "#f9fafb",

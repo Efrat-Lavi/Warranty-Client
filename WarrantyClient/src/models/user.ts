@@ -3,6 +3,7 @@ export type User = {
   id: number,
   nameUser: string,
   role: string,
+  isAccessEmails:boolean
 }
 
 export interface UserState {

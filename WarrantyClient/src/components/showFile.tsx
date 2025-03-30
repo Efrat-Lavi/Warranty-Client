@@ -207,18 +207,19 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
 
                     {isImage && <CardMedia
                         component="img"
-                        height="200"
+                        height="90%"
                         image={fileUrl}
                         alt={fileName}
                         sx={{ objectFit: 'contain', paddingTop: '25px' }}
                     />}
                     {!isImage &&
-                        <iframe
-                            src={fileUrl}
-                            width="100%"
-                            height="300px"
-                            style={{ border: "none" }}
-                        />}
+                       <iframe
+                       src={`${fileUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+                       width="100%"
+                       height="100%"
+                       style={{ border: "none" }}
+                   />
+                  }
                 </Box>
             </DialogContent>
         </Dialog>
@@ -227,47 +228,3 @@ const ShowFile = ({ warranty, fileName }: { warranty: Warranty, fileName: string
 };
 
 export default ShowFile;
-// <Card sx={{ width: 350, boxShadow: 4, borderRadius: 3, overflow: 'hidden', position: 'relative' }}>
-//     {fileUrl ? (
-//         isImage ? (
-//             <Box>
-//                 <CardMedia
-//                     component="img"
-//                     height="200"
-//                     image={fileUrl}
-//                     alt={fileName}
-//                     sx={{ objectFit: 'contain', paddingTop: '25px' }}
-//                 />
-//                 <Button
-//                     variant="contained"
-//                     color="primary"
-//                     onClick={() => downloadFileToComputer(fileUrl, fileName)}
-//                     sx={{ marginTop: 1 }}
-//                 >
-//                     הורדת הקובץ
-//                 </Button></Box>
-//         ) : (
-//             <Box sx={{ padding: 2, textAlign: "center" }}>
-//                 <Typography variant="body1">הקובץ הוא PDF</Typography>
-//                 <iframe
-//                     src={fileUrl}
-//                     width="100%"
-//                     height="300px"
-//                     style={{ border: "none" }}
-//                 />
-//                   <Button
-//                     variant="contained"
-//                     color="primary"
-//                     onClick={() => downloadFileToComputer(fileUrl, fileName)}
-//                     sx={{ marginTop: 1 }}
-//                 >
-//                     הורדת הקובץ
-//                 </Button>
-//             </Box>
-//         )
-//     ) : (
-//         <Typography variant="body1" align="center" sx={{ padding: 2 }}>
-//             טוען תבנית...
-//         </Typography>
-//     )}
-// </Card>

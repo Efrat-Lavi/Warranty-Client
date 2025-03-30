@@ -8,6 +8,7 @@ export type Record = {
     warranty:Warranty,
     warrantyId:number,
     roleWarranty:string,
+    emailOwner:string
   }
   
   export interface RecordState {
