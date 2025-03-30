@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 import store  from './redux/store';
-import { BrowserRouter as Router, Routes, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 import { router } from './Router';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -73,10 +73,10 @@ function App() {
     <ThemeProvider theme={theme}>
     <Provider store={store}>
       <RouterProvider router={router}></RouterProvider>
-      <Router>
+      {/* <Router>
         <Routes>
         </Routes>
-      </Router>
+      </Router> */}
     </Provider></ThemeProvider>
   );
 }
