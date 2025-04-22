@@ -306,11 +306,11 @@ const Header: React.FC<HeaderProps> = ({ handleDrawerToggle }) => {
         
         {/* Right section with notifications and user menu */}
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <IconButton size="large" aria-label="notifications" color="inherit" sx={{ mr: 2 }}>
+          {/* <IconButton size="large" aria-label="notifications" color="inherit" sx={{ mr: 2 }}>
             <Badge badgeContent={3} color="error">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
           {token ? (
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <IconButton onClick={handleMenuOpen} sx={{ color: theme.palette.primary.main }}>

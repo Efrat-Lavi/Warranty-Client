@@ -84,7 +84,6 @@ export const router = createBrowserRouter([
                     { path: "/record", element: <RecordPage /> },
                     { path: "/record/:id", element: <WarrantyDetails /> },
                     { path: "/add-warranty", element: <AddWarranty /> },
-                    // { path: "/dashboard", element: <Dashboard /> },
                     { path: "/profile", element: <UserProfile /> },
                     { path: "/settings", element: <UserProfile /> },
                     { path: "/SharedWithMe", element: <SharedWithMe /> },

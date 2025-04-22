@@ -32,8 +32,8 @@ export const downloadFile = async ({ fileName }: { fileName: string }) => {
 };
 
 export const analyzeFile = async (downloadUrl: string) => {
-    // const response = await axios.post('https://keepit-service-ai.onrender.com/generate', {
-    const response = await axios.post('http://127.0.0.1:5000/generate', {
+    const response = await axios.post('https://keepit-service-ai.onrender.com/generate', {
+    // const response = await axios.post('http://127.0.0.1:5000/generate', {
         file_url: downloadUrl,
     });
     
