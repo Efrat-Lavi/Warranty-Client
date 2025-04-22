@@ -4,8 +4,8 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './Router';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-export const baseUrl = "https://localhost:7200"
-// export const baseUrl = "https://warranty-server-g7vn.onrender.com"
+// export const baseUrl = "https://localhost:7200"
+export const baseUrl = "https://warranty-server-g7vn.onrender.com"
 //
 function App() {
   const theme = createTheme({
