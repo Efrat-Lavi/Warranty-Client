@@ -115,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ handleDrawerToggle }) => {
               variant="contained"
               color="primary"
             >
-              Login1
+              Login
             </Button>
           )}
         </Box>
