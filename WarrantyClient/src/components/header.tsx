@@ -110,7 +110,8 @@ const Header: React.FC<HeaderProps> = ({ handleDrawerToggle }) => {
             </Box>
           ) : (
             <Button
-              href="/login"
+              // href="/login"
+              onClick={() => navigate("/login")}
               variant="contained"
               color="primary"
             >

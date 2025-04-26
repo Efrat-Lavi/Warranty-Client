@@ -184,8 +184,8 @@ const LoginPage = () => {
             textAlign: "center"
           }}
         >
-          <Box 
-            sx={{ 
+          <Box
+            sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -205,10 +205,10 @@ const LoginPage = () => {
         {/* Error message */}
         {error && (
           <Box sx={{ px: 4 }}>
-            <Alert 
-              severity="error" 
+            <Alert
+              severity="error"
               icon={<AlertCircle size={18} />}
-              sx={{ 
+              sx={{
                 mb: 3,
                 alignItems: 'center',
                 '& .MuiAlert-icon': {
@@ -223,8 +223,8 @@ const LoginPage = () => {
         )}
 
         {/* Form */}
-        <Box 
-          component="form" 
+        <Box
+          component="form"
           onSubmit={handleSubmit(onSubmit)}
           sx={{ p: 4, pt: 2 }}
         >
@@ -339,11 +339,11 @@ const LoginPage = () => {
               }
             }}
           >
-            <Box 
-              component="img" 
-              src="/google-icon.svg" 
-              alt="Google" 
-              sx={{ width: 18, height: 18, mr: 1 }} 
+            <Box
+              component="img"
+              src="/google-icon.svg"
+              alt="Google"
+              sx={{ width: 18, height: 18, mr: 1 }}
             />
             Sign in with Google
           </Button>
@@ -365,7 +365,7 @@ const LoginPage = () => {
           </Button>
 
           {/* Register link */}
-          <Box sx={{ mt: 3, textAlign: "center" }}>
+          {/* <Box sx={{ mt: 3, textAlign: "center" }}>
             <Typography variant="body2" color="text.secondary">
               New to Warranty Keeper?{" "}
               <Typography
@@ -387,7 +387,34 @@ const LoginPage = () => {
                 <ArrowRight size={14} style={{ marginLeft: 4 }} />
               </Typography>
             </Typography>
+          </Box> */}
+     
+          {/* Register link */}
+          <Box sx={{ mt: 3, textAlign: "center" }}>
+            <Typography variant="body2" color="text.secondary">
+              New to Warranty Keeper?{" "}
+              <Typography
+                component="span"
+                variant="body2"
+                onClick={() => navigate("/register")}
+                sx={{
+                  color: "primary.main",
+                  fontWeight: 600,
+                  textDecoration: "none",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  cursor: "pointer",
+                  '&:hover': {
+                    textDecoration: "underline"
+                  }
+                }}
+              >
+                Create an account
+                <ArrowRight size={14} style={{ marginLeft: 4 }} />
+              </Typography>
+            </Typography>
           </Box>
+
         </Box>
       </MotionPaper>
     </Box>
