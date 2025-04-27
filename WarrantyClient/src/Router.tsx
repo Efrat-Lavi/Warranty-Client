@@ -1,59 +1,4 @@
-// import { createBrowserRouter } from "react-router-dom"
-// import LoginPage from "./components/login"
-// import RegisterPage from "./components/register"
-// // import Layout from "./components/home"
-// import ErrorPage from "./components/error"
-// import RecordPage from "./components/records/recordPage"
-// import AddWarranty from "./components/add-warranty"
 
-// import WarrantyDetails from "./components/records/WarrantyDetails"
-// import Dashboard from "./components/dashbord"
-// import UserProfile from "./components/userProfile"
-// import AppLayout from "./components/appLayout"
-// import SharedWithMe from "./components/sharedWithMe"
-// // import WarrantyDetails from "./components/records/recordDetails"
-
-// export const router = createBrowserRouter([
-//     {
-//         path: "/", element: <AppLayout />, children: [
-//             {
-//                index:true, element: <Dashboard />,
-//             },
-//             {
-//                 path: "/login", element: <LoginPage />,
-//             },
-//             {
-//                 path: "/register", element: <RegisterPage />,
-//             },
-//             {
-//                 path: "/record", element: <RecordPage />,
-//             }, 
-//             {
-//                 path: "/record/:id", element: <WarrantyDetails />,
-//             }
-//             ,
-//             {
-//                 path: "/add-warranty", element: <AddWarranty />,
-//             }
-//             ,
-//             {
-//                 path: "/dashboard", element: <Dashboard />,
-//             },
-//             {
-//                 path:"/profile",element:<UserProfile/>
-//             },
-//             {
-//                 path:"/settings",element:<UserProfile/>
-//             },
-//             {
-//                 path:"/SharedWithMe",element:<SharedWithMe/>
-//             }
-//         ]
-//     },
-//     { path: "*", element: <ErrorPage /> }
-
-
-// ])
 import { createBrowserRouter } from "react-router-dom";
 import LoginPage from "./components/login";
 import RegisterPage from "./components/register";
@@ -93,5 +38,5 @@ export const router = createBrowserRouter([
     },
     { path: "*", element: <ErrorPage /> }
 ],
-{ basename: "/" } // הוספנו basename
+// { basename: "/" } // הוספנו basename
 );
