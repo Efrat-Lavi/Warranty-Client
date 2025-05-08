@@ -1,6 +1,5 @@
 
 import { HashRouter, Routes, Route } from "react-router-dom";
-import LoginPage from "./components/login";
 import RegisterPage from "./components/register";
 import ErrorPage from "./components/error";
 import RecordPage from "./components/records/recordPage";
