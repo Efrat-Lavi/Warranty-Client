@@ -86,8 +86,9 @@ import { Provider } from 'react-redux';
 import store from './redux/store';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AppRouter from './Router'; // קובץ הראוטינג שלך
+export const baseUrl = "https://localhost:7200"
 
-export const baseUrl = "https://warranty-server-g7vn.onrender.com";
+// export const baseUrl = "https://warranty-server-g7vn.onrender.com";
 
 function App() {
   const theme = createTheme({
@@ -152,12 +153,6 @@ function App() {
     },
   })
 
-  // const theme = createTheme({
-  //   palette: { /* כל העיצוב כמו שכתבת */ },
-  //   typography: { /* הטיפוגרפיה כמו שכתבת */ },
-  //   shape: { borderRadius: 8 },
-  //   components: { /* כל הסטיילים כמו שכתבת */ },
-  // });
 
   return (
     <ThemeProvider theme={theme}>

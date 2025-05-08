@@ -18,6 +18,19 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+// קריאה ל-Google Login
+export const googleLoginUser = createAsyncThunk(
+  "auth/google-login",
+  async ({ token }: { token: string|undefined }, thunkAPI) => {
+    try {
+      const response = await axios.post(`${baseUrl}/api/Auth/google-login`, { token });
+      localStorage.setItem("token", response.data); // שמירת טוקן בלוקאלי
+      return response.data; // מחזיר את הטוקן
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response?.data || "Google login failed");
+    }
+  }
+);
 
 // קריאה ל-REGISTER
 export const registerUser = createAsyncThunk(
@@ -101,6 +114,18 @@ const authSlice = createSlice({
         state.user = action.payload
       })
       .addCase(getUserByEmail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(googleLoginUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(googleLoginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload; // שמירה של הטוקן ב-state
+      })
+      .addCase(googleLoginUser.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });

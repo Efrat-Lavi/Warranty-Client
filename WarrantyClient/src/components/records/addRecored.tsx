@@ -7,12 +7,11 @@ const AddRecordButton = () => {
     return (
         <Button
             variant="contained"
-            color="primary"
+           sx={{color:"#10a37f", backgroundColor: "white", "&:hover": { backgroundColor: "#f9fafb" }}}
             fullWidth
-            sx={{ marginBottom: 2 }}
             onClick={() => navigate("/add-warranty")}
         >
-            Add Warranty
+            New +
         </Button>
     );
 };

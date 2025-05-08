@@ -115,9 +115,10 @@ import {
   useTheme
 } from "@mui/material";
 import { Eye, EyeOff, LogIn, AlertCircle, Mail, Lock, ArrowRight, Shield } from 'lucide-react';
-import { loginUser } from "../redux/authSlice";
+import { googleLoginUser, loginUser } from "../redux/authSlice";
 import { AddDispatch, StoreType } from "../redux/store";
 import { motion } from "framer-motion";
+import { GoogleLogin } from '@react-oauth/google';
 
 const MotionPaper = motion(Paper);
 
@@ -150,6 +151,7 @@ const LoginPage = () => {
       navigate("/");
     }
   };
+
 
   return (
     <Box
@@ -318,35 +320,25 @@ const LoginPage = () => {
               </Typography>
             </Divider>
           </Box>
-
-          {/* Google sign in */}
-          <Button
-            fullWidth
-            variant="outlined"
-            sx={{
-              py: 1.5,
-              mb: 2,
-              borderRadius: 2,
-              textTransform: "none",
-              fontWeight: 500,
-              fontSize: "1rem",
-              borderColor: "divider",
-              color: "text.primary",
-              bgcolor: (theme) => alpha(theme.palette.background.default, 0.8),
-              '&:hover': {
-                bgcolor: (theme) => alpha(theme.palette.background.default, 1),
-                borderColor: "divider"
-              }
-            }}
-          >
-            <Box
-              component="img"
-              src="/google-icon.svg"
-              alt="Google"
-              sx={{ width: 18, height: 18, mr: 1 }}
+          {/* Google login button */}
+          <Box sx={{ mb: 2 }}>
+            <GoogleLogin
+              onSuccess={async (credentialResponse) => {
+                try {
+                  const googleToken = credentialResponse.credential;
+                  console.log("Google credential", googleToken);
+                  // שלח את הטוקן לשרת לצורך אימות
+                  await dispatch(googleLoginUser({ token: googleToken }));
+                } catch (error) {
+                  console.error('Google login error:', error);
+                }
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+              useOneTap
             />
-            Sign in with Google
-          </Button>
+          </Box>
 
           {/* Cancel button */}
           <Button
@@ -388,7 +380,7 @@ const LoginPage = () => {
               </Typography>
             </Typography>
           </Box> */}
-     
+
           {/* Register link */}
           <Box sx={{ mt: 3, textAlign: "center" }}>
             <Typography variant="body2" color="text.secondary">
