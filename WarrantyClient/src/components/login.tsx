@@ -207,7 +207,7 @@ const LoginPage = () => {
             fullWidth
             variant="contained"
             disabled={loading || signingIn}
-            startIcon={loading ? <CircularProgress size={20} color="inherit" /> : <LogIn size={18} />}
+            startIcon={loading || signingIn? <CircularProgress size={20} color="inherit" /> : <LogIn size={18} />}
             sx={{
               py: 1.5,
               mt: 1,
