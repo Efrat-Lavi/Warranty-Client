@@ -21,7 +21,7 @@ import {
   useTheme
 } from "@mui/material";
 import { Eye, EyeOff, LogIn, AlertCircle, Mail, Lock, ArrowRight, Shield } from 'lucide-react';
-import { googleLoginUser, loginUser } from "../redux/authSlice";
+import { googleLoginUser, login, loginUser } from "../redux/authSlice";
 import { AddDispatch, StoreType } from "../redux/store";
 import { motion } from "framer-motion";
 import { GoogleLogin } from '@react-oauth/google';
@@ -236,8 +236,10 @@ const LoginPage = () => {
                 try {
                   const googleToken = credentialResponse.credential;
                   console.log("Google credential", googleToken);
-                  // שלח את הטוקן לשרת לצורך אימות
-                  await dispatch(googleLoginUser({ token: googleToken }));
+                  var result  = await dispatch(googleLoginUser({ token: googleToken }));
+                  console.log(result);
+                  await dispatch(login({token:result.payload.token, user:result.payload.user}));
+                  navigate("/");
                 } catch (error) {
                   console.error('Google login error:', error);
                 }

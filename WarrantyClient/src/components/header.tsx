@@ -1,4 +1,3 @@
-
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../redux/authSlice";
 import { StoreType } from "../redux/store";

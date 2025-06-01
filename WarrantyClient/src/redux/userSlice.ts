@@ -3,11 +3,11 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { User } from '../models/user';
 import { initialState } from '../models/user';
-import { baseUrl } from '../App';
+import { getBaseUrl } from '../App';
 
 export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
   try {
-    const response = await axios.get(`${baseUrl}/api/User`);
+    const response = await axios.get(`${getBaseUrl()}/api/User`);
     return response.data;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error.message);
@@ -34,7 +34,7 @@ export const getUsers = createAsyncThunk("users/fetch", async (_, thunkAPI) => {
 export const addUser = createAsyncThunk("users/add",
   async (user: Partial<User>, thunkAPI) => {
     try {
-      const response = await axios.post(`${baseUrl}/api/User`, user)
+      const response = await axios.post(`${getBaseUrl()}/api/User`, user)
       return response.data;
     } catch (error: any) {
       console.log(error);
@@ -55,7 +55,7 @@ export const updateUserDetails = createAsyncThunk(
       };
       console.log(updatedUser);
 
-      const response = await axios.put(`${baseUrl}/api/User/${userId}`, updatedUser, {
+      const response = await axios.put(`${getBaseUrl()}/api/User/${userId}`, updatedUser, {
         headers: { Authorization: `Bearer ${token}` }
       });
       localStorage.setItem("user", JSON.stringify(response.data));

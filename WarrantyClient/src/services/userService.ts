@@ -1,10 +1,10 @@
 import axios from "axios";
-import { baseUrl } from "../App";
+import { getBaseUrl } from "../App";
 
 
 export const getUserByEmail = async ({ token, email }: { token: string; email: string }) => {
     try {
-        const response = await axios.get(`${baseUrl}/api/User/email/${email}`, {
+        const response = await axios.get(`${getBaseUrl()}/api/User/email/${email}`, {
             headers: { Authorization: `Bearer ${token}` }
         });
         return response.data;

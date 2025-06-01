@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseUrl } from "../App";
+import { getBaseUrl } from "../App";
 
 export const sendEmail = async (to: string, subject: string, inviter: string, permission: string, warrantyLink: string) => {
     const emailHtml = `
@@ -19,7 +19,7 @@ export const sendEmail = async (to: string, subject: string, inviter: string, pe
     </div>`;
 
     try {
-        const response = await axios.post(`${baseUrl}/api/email/send`, {
+        const response = await axios.post(`${getBaseUrl()}/api/email/send`, {
             to,
             subject,
             body: emailHtml,
@@ -60,7 +60,7 @@ export const sendEmailOnRegistration = async ({email,warrantyLink}:{email: strin
     </div>`;
 
     try {
-        const response = await axios.post(`${baseUrl}/api/email/send`, {
+        const response = await axios.post(`${getBaseUrl()}/api/email/send`, {
             to: email,
             subject,
             body: emailHtml,

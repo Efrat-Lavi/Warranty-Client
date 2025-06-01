@@ -1,11 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Warranty } from '../models/warranties';
-import { baseUrl } from '../App';
+import { getBaseUrl } from '../App';
 
 export const getWarranties = createAsyncThunk("warranty/fetch", async ({ token, userId }: { token: string, userId: number }, thunkAPI) => {
     try {
-        const response = await axios.get(`${baseUrl}/api/Record/user/${userId}`, {
+        const response = await axios.get(`${getBaseUrl()}/api/Record/user/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -29,7 +29,7 @@ export const addWarranty = createAsyncThunk("warranty/add",
             };
             console.log(token);
 
-            const response = await axios.post(`${baseUrl}/api/Warranty`, warrantyToSend, {
+            const response = await axios.post(`${getBaseUrl()}/api/Warranty`, warrantyToSend, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -43,7 +43,7 @@ export const addWarranty = createAsyncThunk("warranty/add",
 );
 export const updateWarranty =  async ({token, warranty,id }: {token:string, warranty: Partial<Warranty> ,id:number}) => {
         try {
-            const response = await axios.put(`${baseUrl}/api/Warranty/${id}`, warranty,{
+            const response = await axios.put(`${getBaseUrl()}/api/Warranty/${id}`, warranty,{
                 headers: {
                     Authorization: `Bearer ${token}`}
                 });
@@ -57,7 +57,7 @@ export const deleteWarranty =  async ({ token, warrantyId }: { token: string, wa
         try {
             console.log("del");
             
-            await axios.delete(`${baseUrl}/api/Warranty/${warrantyId}`, {
+            await axios.delete(`${getBaseUrl()}/api/Warranty/${warrantyId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

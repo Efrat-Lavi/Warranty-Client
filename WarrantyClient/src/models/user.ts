@@ -3,7 +3,8 @@ export type User = {
   id: number,
   nameUser: string,
   role: string,
-  isAccessEmails:boolean
+  isAccessEmails:boolean,
+  picture?: string | null,
 }
 
 export interface UserState {
