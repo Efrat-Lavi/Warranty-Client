@@ -644,7 +644,7 @@ const AddWarranty = () => {
   const { user, token } = useSelector((state: StoreType) => state.auth)
   const [activeStep, setActiveStep] = useState(0)
   const [file, setFile] = useState<File | null>(null)
-  const [disabled, setDisabled] = useState(false)
+  // const [disabled, setDisabled] = useState(false)
   const [loading, setLoading] = useState(false)
   const [saving, setSaving] = useState(false)
   const [analyzing, setAnalyzing] = useState(false)
@@ -716,7 +716,7 @@ const AddWarranty = () => {
       expirationDate: "",
       linkFile: "",
     })
-    setDisabled(false)
+    // setDisabled(false)
     setError(null)
     setSuccess(null)
     setActiveStep(0)
@@ -746,7 +746,7 @@ const AddWarranty = () => {
           expirationDate: response.expiration_date || "",
           linkFile: `${user.id}/${file.name}`,
         })
-        setDisabled(true)
+        // setDisabled(true)
         setSuccess("Document analyzed successfully! Please review and complete the form.")
         setActiveStep(1) // Move to next step
       } else {
