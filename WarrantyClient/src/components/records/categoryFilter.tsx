@@ -1,50 +1,146 @@
+
+// import { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import {
+//   IconButton,
+//   Menu,
+//   MenuItem,
+//   Tooltip
+// } from '@mui/material';
+// import FilterListIcon from '@mui/icons-material/FilterList';
+// import { StoreType } from '../../redux/store';
+// import recordSlice from '../../redux/recordSlice';
+
+// const CategoryFilter = () => {
+//   const dispatch = useDispatch();
+//   const selectedCategory = useSelector((state: StoreType) => state.records.selectedCategory);
+//   const categories = ['Electronics', 'Home Appliances', 'Furniture', 'Other'];
+
+//   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+//   const open = Boolean(anchorEl);
+
+//   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+//     setAnchorEl(event.currentTarget);
+//   };
+
+//   const handleClose = (category?: string) => {
+//     if (category !== undefined) {
+//       dispatch(recordSlice.actions.setSelectedCategory(category));
+//     }
+//     setAnchorEl(null);
+//   };
+
+//   return (
+//     <>
+//       <Tooltip title="Filter by Category">
+//         <IconButton
+//           onClick={handleClick}
+//           sx={{
+//             color: '#238636',
+//             borderRadius: '6px',
+//             ml: 1,
+//             '&:hover': {
+//               backgroundColor: '#f0f0f0'
+//             }
+//           }}
+//         >
+//           <FilterListIcon />
+//         </IconButton>
+//       </Tooltip>
+
+//       <Menu
+//         anchorEl={anchorEl}
+//         open={open}
+//         onClose={() => handleClose()}
+//         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+//         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+//       >
+//         <MenuItem onClick={() => handleClose('')}>All Categories</MenuItem>
+//         {categories.map((category) => (
+//           <MenuItem
+//             key={category}
+//             selected={selectedCategory === category}
+//             onClick={() => handleClose(category)}
+//           >
+//             {category}
+//           </MenuItem>
+//         ))}
+//       </Menu>
+      
+//     </>
+//   );
+// };
+
+// export default CategoryFilter;
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import {
+  IconButton,
+  Menu,
+  MenuItem,
+  Typography,
+  Box,
+  // Grow,
+  Tooltip
+} from '@mui/material';
+import FilterListIcon from '@mui/icons-material/FilterList';
 import { StoreType } from '../../redux/store';
 import recordSlice from '../../redux/recordSlice';
 
+const categories = ['All', 'Electronics', 'Home Appliances', 'Furniture', 'Other'];
+
 const CategoryFilter = () => {
   const dispatch = useDispatch();
-  const selectedCategory = useSelector((state: StoreType) => state.records.selectedCategory);
-  const categories = ['Electronics', 'Home Appliances', 'Furniture', 'Other'];
+  const selectedCategory = useSelector((state: StoreType) => state.records.selectedCategory || 'All');
 
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    dispatch(recordSlice.actions.setSelectedCategory(event.target.value));
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleSelect = (category: string) => {
+    dispatch(recordSlice.actions.setSelectedCategory(category === 'All' ? '' : category));
+    handleClose();
   };
 
   return (
-    <FormControl variant="outlined" sx={{ width: '200px', backgroundColor: '#f0f0f0' }}>
-      <InputLabel id="category-label" sx={{ color: '#238636' }}>Category</InputLabel>
-      <Select
-        labelId="category-label"
-        value={selectedCategory}
-        onChange={handleChange}
-        label="Category"
-        sx={{
-          '& .MuiSelect-icon': { color: '#238636' }, // צבע האייקון
-          '& .MuiOutlinedInput-root': {
-            '& fieldset': { borderColor: '#238636' }, // גבול רגיל
-            '&:hover fieldset': { borderColor: '#238636' }, // גבול בעת hover
-            '&.Mui-focused fieldset': { borderColor: '#238636' }, // גבול במצב ממוקד
-          },
-          '& .MuiInputLabel-root': {
-            color: '#238636', // צבע הלייבל
-          },
-          '& .MuiSelect-root': {
-            color: '#238636', // צבע של הטקסט שבחרת
-          },
-        }}
+    <Box sx={{ mr:3,display: 'flex', alignItems: 'center', gap: 1 }}>
+      <Typography variant="body2" sx={{ color: '#238636' }}>
+        {selectedCategory}
+      </Typography>
+
+      <Tooltip title="Filter by category">
+        <IconButton onClick={handleClick} sx={{ color: '#238636' }}>
+          <FilterListIcon />
+        </IconButton>
+      </Tooltip>
+      
+      
+      <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        // TransitionComponent={Grow}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        <MenuItem value="">
-          <em>All Categories</em>
-        </MenuItem>
         {categories.map((category) => (
-          <MenuItem key={category} value={category}>
+          <MenuItem
+            key={category}
+            selected={selectedCategory === category || (selectedCategory === '' && category === 'All')}
+            onClick={() => handleSelect(category)}
+          >
             {category}
           </MenuItem>
         ))}
-      </Select>
-    </FormControl>
+      </Menu>
+    </Box>
   );
 };
 

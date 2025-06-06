@@ -57,9 +57,6 @@ const RegisterPage = () => {
       const loginResult = await dispatch(loginUser({ email: data.Email, password: data.Password }))
       if (loginUser.fulfilled.match(loginResult)) {
         navigate("/")
-      //   const newUser = {
-      //     email: data.Email,
-      // };
       
       sendEmailOnRegistration({email:data.Email,warrantyLink:window.location.href});
       
